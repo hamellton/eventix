@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: eventix-portfolio
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/eventix
+    username: eventix
+    password: eventix
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: false
+
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+
+logging:
+  level:
+    org.hibernate.SQL: INFO
+    liquibase: INFO
+

@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-seed-roles
+      author: blackboxai
+      changes:
+        - sql:
+            splitStatements: false
+            stripComments: true
+            sql: |
+              INSERT INTO roles (code)
+              VALUES
+                ('USER'),
+                ('ADMIN'),
+                ('SUPER_ADMIN')
+              ON CONFLICT (code) DO NOTHING;
+
