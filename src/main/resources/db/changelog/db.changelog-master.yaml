@@ -9,6 +9,14 @@ databaseChangeLog:
       file: db/changelog/004-create-user-roles.yaml
   - include:
       file: db/changelog/005-seed-roles.yaml
+  - include:
+      file: db/changelog/006-create-permissions.yaml
+  - include:
+      file: db/changelog/007-create-role-permissions.yaml
+  - include:
+      file: db/changelog/008-seed-permissions.yaml
+  - include:
+      file: db/changelog/009-seed-role-permissions.yaml
 
 
 

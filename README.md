@@ -1,32 +1,32 @@
 # eventix-portfolio (Java + Hibernate + Liquibase)
 
-## Что внутри
+## What's inside
 - Spring Boot (Web + Spring Data JPA)
-- Hibernate 6 (через JPA)
-- Liquibase миграции в `src/main/resources/db/changelog`
+- Hibernate 6 (via JPA)
+- Liquibase migrations in `src/main/resources/db/changelog`
 - PostgreSQL
-- Интеграционный тест (Testcontainers) проверяет, что Liquibase создал таблицы и JPA работает
+- Integration test (Testcontainers) verifies that Liquibase created the tables and JPA works
 
-## Локальный запуск (PostgreSQL)
-1) Поднимите PostgreSQL на localhost:5432 и создайте БД/пользователя:
+## Local run (PostgreSQL)
+1) Start PostgreSQL on localhost:5432 and create the database/user:
 - db: `eventix`
 - user: `eventix`
 - password: `eventix`
 
-2) Запуск:
+2) Run:
 ```bash
 mvn -q spring-boot:run
 ```
 
-## Тесты
-Интеграционные тесты поднимают PostgreSQL в Docker (Testcontainers):
+## Tests
+Integration tests spin up PostgreSQL in Docker (Testcontainers):
 ```bash
 mvn test
 ```
 
-## Миграции Liquibase
+## Liquibase migrations
 - `db/changelog/001-create-users.yaml`
 - `db/changelog/002-create-events.yaml`
 
-Изменения подключаются в `db/changelog/db.changelog-master.yaml`
+Changes are included in `db/changelog/db.changelog-master.yaml`
 

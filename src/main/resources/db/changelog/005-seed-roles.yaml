@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: 005-seed-roles
-      author: blackboxai
+      author: hamellton
       changes:
         - sql:
             splitStatements: false

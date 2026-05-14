@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: 008-seed-permissions
+      author: hamellton
+      changes:
+        - sql:
+            splitStatements: false
+            stripComments: true
+            sql: |
+              INSERT INTO permissions (code)
+              VALUES
+                ('USER_VIEW_SELF'),
+                ('ADMIN_USER_MANAGE'),
+                ('SUPERADMIN_FULL_ADMIN'),
+                ('SALON_ADMIN_READ'),
+                ('SERIES_ADMIN_READ'),
+                ('SALON_COUPONS_MANAGE'),
+                ('TICKETS_REFUND_APPROVE'),
+                ('ZOOM_UPDATE_ZAK'),
+                ('SUPER_SALON_GUESTS_EXPORT')
+              ON CONFLICT (code) DO NOTHING;
+
