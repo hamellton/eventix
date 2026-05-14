@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - changeSet:
+      id: 009-seed-role-permissions
+      author: hamellton
+      changes:
+        - sql:
+            splitStatements: false
+            stripComments: true
+            sql: |
+              -- USER: basic access
+              INSERT INTO role_permissions (role_id, permission_id)
+              SELECT r.id, p.id
+              FROM roles r
+              JOIN permissions p ON p.code IN ('USER_VIEW_SELF')
+              WHERE r.code IN ('USER')
+              ON CONFLICT DO NOTHING;
+
+              -- ADMIN: admin actions
+              INSERT INTO role_permissions (role_id, permission_id)
+              SELECT r.id, p.id
+              FROM roles r
+              JOIN permissions p ON p.code IN (
+                'ADMIN_USER_MANAGE',
+                'SALON_ADMIN_READ',
+                'SERIES_ADMIN_READ',
+                'SALON_COUPONS_MANAGE',
+                'TICKETS_REFUND_APPROVE',
+                'ZOOM_UPDATE_ZAK'
+              )
+              WHERE r.code IN ('ADMIN')
+              ON CONFLICT DO NOTHING;
+
+              -- SUPER_ADMIN: full access + super-salon export
+              INSERT INTO role_permissions (role_id, permission_id)
+              SELECT r.id, p.id
+              FROM roles r
+              JOIN permissions p ON p.code IN (
+                'SUPERADMIN_FULL_ADMIN',
+                'USER_VIEW_SELF',
+                'ADMIN_USER_MANAGE',
+                'SALON_ADMIN_READ',
+                'SERIES_ADMIN_READ',
+                'SALON_COUPONS_MANAGE',
+                'TICKETS_REFUND_APPROVE',
+                'ZOOM_UPDATE_ZAK',
+                'SUPER_SALON_GUESTS_EXPORT'
+              )
+              WHERE r.code IN ('SUPER_ADMIN')
+              ON CONFLICT DO NOTHING;
+

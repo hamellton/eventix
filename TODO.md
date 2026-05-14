@@ -1,10 +1,10 @@
 # TODO
 
-- [x] Создать Maven pom.xml под Java 21 + Spring Boot + Hibernate/JPA + Liquibase + PostgreSQL + Testcontainers
-- [x] Добавить Spring configuration (application.yml)
-- [x] Добавить Liquibase changelog (master + 2 миграции)
-- [x] Добавить JPA entities (UserEntity, EventEntity)
-- [x] Добавить repositories
-- [x] Добавить интеграционный тест, который поднимает PostgreSQL и проверяет работу Liquibase + JPA
-- [ ] Запустить `mvn test` и/или `mvn spring-boot:run` для проверки
+- [x] Create Maven pom.xml for Java 21 + Spring Boot + Hibernate/JPA + Liquibase + PostgreSQL + Testcontainers
+- [x] Add Spring configuration (application.yml)
+- [x] Add Liquibase changelog (master + 2 migrations)
+- [x] Add JPA entities (UserEntity, EventEntity)
+- [x] Add repositories
+- [x] Add integration test that validates Liquibase + JPA work
+- [ ] Run `mvn test` and/or `mvn spring-boot:run` to verify
 

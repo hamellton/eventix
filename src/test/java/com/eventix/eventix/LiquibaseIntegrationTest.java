@@ -3,9 +3,11 @@ package com.eventix.eventix;
 import com.eventix.eventix.domain.EventEntity;
 import com.eventix.eventix.domain.UserEntity;
 import com.eventix.eventix.repo.EventRepository;
+import com.eventix.eventix.repo.PermissionRepository;
 import com.eventix.eventix.repo.RoleRepository;
 
 import com.eventix.eventix.repo.UserRepository;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -45,7 +47,8 @@ class LiquibaseIntegrationTest {
     @Autowired
     RoleRepository roleRepository;
 
-
+    @Autowired
+    PermissionRepository permissionRepository;
 
     @Test
     void liquibaseShouldCreateTablesAndJpaShouldWork() {
@@ -56,11 +59,14 @@ class LiquibaseIntegrationTest {
         user = userRepository.save(user);
 
         // assign two global roles to prove user_roles join works
-        var userRoleCode1 = roleRepository.findByCode("USER").orElseThrow();
-        var userRoleCode2 = roleRepository.findByCode("ADMIN").orElseThrow();
-        user.setRoles(new java.util.HashSet<>(java.util.List.of(userRoleCode1, userRoleCode2)));
+        var userRole = roleRepository.findByCode("USER").orElseThrow();
+        var adminRole = roleRepository.findByCode("ADMIN").orElseThrow();
+        user.setRoles(new java.util.HashSet<>(java.util.List.of(userRole, adminRole)));
         user = userRepository.save(user);
 
+        // verify permissions are seeded
+        var permission = permissionRepository.findByCode("ADMIN_USER_MANAGE").orElseThrow();
+        assertThat(permission.getCode()).isEqualTo("ADMIN_USER_MANAGE");
 
         EventEntity event = new EventEntity();
         event.setOrganizer(user);
@@ -73,4 +79,5 @@ class LiquibaseIntegrationTest {
         assertThat(eventRepository.findById(event.getId())).isPresent();
     }
 }
+
 
