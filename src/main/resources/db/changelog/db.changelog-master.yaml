@@ -17,6 +17,9 @@ databaseChangeLog:
       file: db/changelog/008-seed-permissions.yaml
   - include:
       file: db/changelog/009-seed-role-permissions.yaml
+  - include:
+      file: db/changelog/010-seed-first-user.yaml
+
 
 
 

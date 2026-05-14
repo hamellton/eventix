@@ -1,0 +1,54 @@
+services:
+  db:
+    image: postgres:16
+    container_name: eventix-db
+    environment:
+      POSTGRES_DB: eventix
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+
+
+    ports:
+      - "5432:5432"
+    volumes:
+      - eventix-postgres-data:/var/lib/postgresql/data
+
+  server:
+    build:
+      context: .
+    container_name: eventix-server
+    depends_on:
+      - db
+    environment:
+      SERVER_PORT: "8080"
+
+      # Spring datasource
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/eventix
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+
+
+
+      # Ensure Liquibase runs in container
+      SPRING_LIQUIBASE_ENABLED: "true"
+    ports:
+      - "8080:8080"
+
+  adminer:
+    image: adminer:latest
+    container_name: eventix-adminer
+    depends_on:
+      - db
+    ports:
+      - "8081:8080"
+    environment:
+      ADMINER_DEFAULT_DB: eventix
+      ADMINER_DEFAULT_SERVER: db
+      ADMINER_DEFAULT_USERNAME: admin
+      ADMINER_DEFAULT_PASSWORD: admin
+
+
+volumes:
+  eventix-postgres-data:
+
+

@@ -18,6 +18,20 @@
 mvn -q spring-boot:run
 ```
 
+## Docker Compose (server + postgres + Adminer)
+Run:
+```bash
+docker compose up --build -d
+```
+
+Endpoints:
+- Server (Spring Boot): http://localhost:8080
+- Adminer: http://localhost:8081
+
+Adminer will open and you can add a connection to the Postgres container (host: `eventix-db` / port: `5432`, if needed).
+
+
+
 ## Tests
 Integration tests spin up PostgreSQL in Docker (Testcontainers):
 ```bash
