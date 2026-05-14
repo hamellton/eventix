@@ -20,10 +20,16 @@ databaseChangeLog:
                     nullable: false
                     unique: true
               - column:
-                  name: full_name
+                  name: first_name
                   type: varchar(255)
                   constraints:
                     nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+
               - column:
                   name: created_at
                   type: timestamp with time zone

@@ -1,0 +1,33 @@
+# Maven
+/target/
+
+# Logs
+*.log
+
+# Compiled artifacts
+*.class
+*.jar
+*.war
+*.ear
+
+# IntelliJ IDEA
+/.idea/
+*.iml
+/out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+
+# Environment / secrets (if used)
+.env
+.env.*
+
+/prisma-local/

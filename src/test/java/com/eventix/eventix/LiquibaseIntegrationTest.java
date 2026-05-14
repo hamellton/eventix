@@ -54,7 +54,9 @@ class LiquibaseIntegrationTest {
     void liquibaseShouldCreateTablesAndJpaShouldWork() {
         UserEntity user = new UserEntity();
         user.setEmail("alice@example.com");
-        user.setFullName("Alice");
+        user.setFirstName("Alice");
+        user.setLastName("Liddell");
+
         user.setCreatedAt(OffsetDateTime.now());
         user = userRepository.save(user);
 
